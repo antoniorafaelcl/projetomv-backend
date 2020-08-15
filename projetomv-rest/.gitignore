@@ -1,0 +1,19 @@
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.project
+.classpath
+
+# Generated files
+.idea/
+### Java-Web ###
+## ignoring target file
+target/
