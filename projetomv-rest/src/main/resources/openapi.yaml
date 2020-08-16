@@ -1,0 +1,12 @@
+resourcePackages:
+- br.com.projetomv.endpoint
+prettyPrint: true
+cacheTTL: 0
+openAPI:
+  servers:
+     - url: http://localhost:8080/projetomv-backend/api/v1/
+       description: Servidor de desenvolvimento (Contexto EAR)
+  info:
+    version: '1.0.0'
+    title: Projeto MV API Rest
+    description: 'Recursos do projeto'
