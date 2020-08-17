@@ -59,15 +59,15 @@ public class ProdutoServiceImpl extends GenericServiceImpl<Long, Produto> implem
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	@Override
 	public void cadastrar(ProdutoDTO produtoDTO) {
-		Categoria categoria = categoriaService.consultarPorId(produtoDTO.getIdCategoria());
-		produtoDAO.gravar(ProdutoMapper.mapperDTOParaEntidade(produtoDTO, categoria));
+		//Categoria categoria = categoriaService.consultarPorId(produtoDTO.getIdCategoria());
+		produtoDAO.gravar(ProdutoMapper.mapperDTOParaEntidade(produtoDTO, null));
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	@Override
 	public void editar(ProdutoDTO produtoDTO) {
-		Categoria categoria = categoriaService.consultarPorId(produtoDTO.getIdCategoria());
-		produtoDAO.gravar(ProdutoMapper.mapperDTOParaEntidade(produtoDTO, categoria));
+		//Categoria categoria = categoriaService.consultarPorId(produtoDTO.getIdCategoria());
+		produtoDAO.gravar(ProdutoMapper.mapperDTOParaEntidade(produtoDTO, null));
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
