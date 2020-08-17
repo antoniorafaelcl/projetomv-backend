@@ -6,12 +6,12 @@
 	<persistence-unit name="br.com.projetomv"
 		transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:jboss/datasources/ProjetoMvDS</jta-data-source>
+		<jta-data-source>java:/projetomvDS</jta-data-source>
 		<properties>
 			<property name="hibernate.default_schema" value="projetomv" />
-			<property name="hibernate.hbm2ddl.auto" value="create"/>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
 			<property name="hibernate.dialect"
-				value="org.hibernate.dialect.H2Dialect" />
+				value="org.hibernate.dialect.OracleDialect" />
 		</properties>
 	</persistence-unit>
 </persistence>

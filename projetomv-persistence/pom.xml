@@ -75,7 +75,12 @@
             <artifactId>h2</artifactId>
             <version>1.4.196</version>
         </dependency>
-
+		
+		<dependency>
+    		<groupId>com.oracle.database.jdbc</groupId>
+    		<artifactId>ojdbc8</artifactId>
+    		<version>19.7.0.0</version>
+		</dependency>
 
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
         <dependency>
