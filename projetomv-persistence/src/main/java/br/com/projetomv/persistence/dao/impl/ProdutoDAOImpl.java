@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
+import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 
 import br.com.projetomv.exception.DAOException;
@@ -38,10 +40,10 @@ public class ProdutoDAOImpl extends GenericDAOImpl<Long, Produto>  implements Pr
 			StringBuilder consulta = new StringBuilder();
 			consulta
 				.append("SELECT p FROM Produto p")
-				.append(" WHERE p.codigo =:codigo");
+				.append(" WHERE p.id =:id");
 			
 			TypedQuery<Produto> resultado = getEntityManager().createQuery(consulta.toString(), Produto.class);
-			resultado.setParameter("codigo", codigo);
+			resultado.setParameter("id", codigo);
 			
 			return resultado.getSingleResult();
 		} catch (NoResultException e) {
@@ -49,6 +51,23 @@ public class ProdutoDAOImpl extends GenericDAOImpl<Long, Produto>  implements Pr
 		} catch (PersistenceException e) {
 			throw new DAOException();
 		}
+	}
+	
+	@Override
+	public void reajustarPrecoPorCategoria(String categoria, Double preco) {
+		Query resultado = getEntityManager().createNativeQuery("{ call reajustePrecoProduto.reajustarPrecoPorCategoria(:categoria, :preco)}");
+		resultado.setParameter("categoria", categoria);
+		resultado.setParameter("preco", preco);
+		resultado.executeUpdate();
+	}
+	
+	@Override
+	public void reajustarPrecoPorRangePercentual(Double percentualInicial, Double percentualFim, Double preco) {
+		Query resultado = getEntityManager().createNativeQuery("{ call reajustePrecoProduto.reajustarPrecoPorRangePercentual(:percentualInicial, :percentualFim, :preco)}");
+		resultado.setParameter("percentualInicial", percentualInicial);
+		resultado.setParameter("percentualFim", percentualFim);
+		resultado.setParameter("preco", preco);
+		resultado.executeUpdate();
 	}
 
 }

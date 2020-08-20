@@ -14,4 +14,8 @@ public interface ProdutoDAO extends GenericDAO<Long, Produto>{
 	List<Produto> consultarTodos() throws DAOException;
 	
 	Produto consultarPorCodigo(Long codigo) throws RegistroNaoEncontradoException, DAOException;
+	
+	void reajustarPrecoPorCategoria (String categoria, Double preco);
+	
+	void reajustarPrecoPorRangePercentual(Double percentualInicial, Double percentualFim, Double preco);
 }

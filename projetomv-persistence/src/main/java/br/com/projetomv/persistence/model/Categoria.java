@@ -10,18 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CATEGORIA", schema = "projetomv")
+@Table(name = "CATEGORIA", schema = "mv")
 public class Categoria extends EntidadeBase<Long> {
 
 	private static final long serialVersionUID = -7202612145769412801L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "ID_CATEGORIA")
-	private Long id;
-
 	@Column(name = "CD_CATEGORIA")
-	private Long codigo;
+	private Long id;
 
 	@Column(name = "DS_CATEGORIA")
 	private String descricao;
@@ -35,14 +32,6 @@ public class Categoria extends EntidadeBase<Long> {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
 	}
 
 	public String getDescricao() {
@@ -65,7 +54,7 @@ public class Categoria extends EntidadeBase<Long> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(codigo, descricao, id, numeroPercentual);
+		result = prime * result + Objects.hash(descricao, id, numeroPercentual);
 		return result;
 	}
 
@@ -78,8 +67,8 @@ public class Categoria extends EntidadeBase<Long> {
 		if (getClass() != obj.getClass())
 			return false;
 		Categoria other = (Categoria) obj;
-		return Objects.equals(codigo, other.codigo) && Objects.equals(descricao, other.descricao)
-				&& Objects.equals(id, other.id) && Objects.equals(numeroPercentual, other.numeroPercentual);
+		return Objects.equals(descricao, other.descricao) && Objects.equals(id, other.id)
+				&& Objects.equals(numeroPercentual, other.numeroPercentual);
 	}
 
 }

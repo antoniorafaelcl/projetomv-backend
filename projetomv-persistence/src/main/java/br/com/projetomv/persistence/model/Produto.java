@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PRODUTO", schema = "projetomv")
+@Table(name = "PRODUTO", schema = "mv")
 public class Produto extends EntidadeBase<Long> {
 
 	private static final long serialVersionUID = -8835643582282215145L;
@@ -29,7 +29,7 @@ public class Produto extends EntidadeBase<Long> {
 	private Double preco;
 
 	@ManyToOne
-	@JoinColumn(name = "ID_CATEGORIA")
+	@JoinColumn(name = "CD_CATEGORIA")
 	private Categoria categoria;
 
 	public Long getId() {

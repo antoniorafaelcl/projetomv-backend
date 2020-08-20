@@ -9,6 +9,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -35,7 +36,7 @@ public interface ProdutoEndPoint {
 	Response consultarTodos();
 	
 	@GET
-	@Path("{id}")
+	@Path("/{codigo}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Operation(description = "Consultar um produto no sistema", summary = "Consultar um produto", 
 	   responses = {
@@ -72,7 +73,7 @@ public interface ProdutoEndPoint {
 						content = @Content(schema = @Schema(implementation = ProdutoDTO.class))) @Valid ProdutoDTO produtoDTO);
 	
 	@DELETE
-	@Path("{id}")
+	@Path("/{codigo}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Operation(description = "Deletar um produto no sistema", summary = "Deletar um produto", 
 	   responses = {
@@ -80,6 +81,30 @@ public interface ProdutoEndPoint {
 			   @ApiResponse(responseCode = "400", description = "Bad Request"),
 			   @ApiResponse(responseCode = "404", description = "Not found"),
 			   @ApiResponse(responseCode = "500", description = "Internal Server Error")})
-	Response deletar(@PathParam(value = "id") Long id);
+	Response deletar(@PathParam(value = "codigo") Long codigo);
+	
+	@PUT
+	@Path("/ajuste-preco-categoria")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Operation(description = "Editar o preço de um produto por categoria no sistema", summary = "Editar o preço de um produto por categoria", 
+	   responses = {
+			   @ApiResponse(responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
+			   @ApiResponse(responseCode = "400", description = "Bad Request"),
+			   @ApiResponse(responseCode = "404", description = "Not found"),
+			   @ApiResponse(responseCode = "500", description = "Internal Server Error")})
+	Response reajustarPrecoPorCategoria (@QueryParam("categoria") String categoria, @QueryParam("preco") Double preco);
+	
+	@PUT
+	@Path("/ajuste-preco-range-categoria")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Operation(description = "Editar o preço de um produto por categoria no sistema", summary = "Editar o preço de um produto por categoria", 
+	   responses = {
+			   @ApiResponse(responseCode = "200", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
+			   @ApiResponse(responseCode = "400", description = "Bad Request"),
+			   @ApiResponse(responseCode = "404", description = "Not found"),
+			   @ApiResponse(responseCode = "500", description = "Internal Server Error")})
+	Response reajustarPrecoPorRangePercentual(@QueryParam("percentualInicial") Double percentualInicial, @QueryParam("percentualFim") Double percentualFim, @QueryParam("preco") Double preco);
 	
 }

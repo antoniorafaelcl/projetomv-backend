@@ -28,5 +28,14 @@ Baixe as dependencias do seu projeto com o maven.
 
 Atualize o `persistence.xml` para que o hibernate crie as tabelas do banco automaticamente, é so descomentar a linha no arquivo.
 
-Insera na sua base de dados o arquivo `script-categoria-dados.sql` que esta na raiz do projeto, que é a massa de dados para a tabela de categoria.
+## Scripts para serem rodados na base de dados:
+
+Primeiramente se deve inserir o arquivo `script-criacao-usuario-schema.sql` para criação do usuario e schema da base de dados, como de suas 
+permissões necessarias para realizar os procedimentos de cadastro, alteração e exclusão dos dados do sistema.
+
+Proximo passo será inserção na sua base de dados o arquivo `script-categoria-dados.sql`, que é a massa de dados para a tabela de categoria.
+
+Por último, mas nao menos importante o arquivo `script-reajuste-preco-produto.sql` aonde contém o PLSQL com as procedures para algumas funcionalidades que seram executadas via sistema.
+
+OBS: Todos os scripts se encontram a raiz do projeto.
 

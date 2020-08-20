@@ -37,9 +37,21 @@ public class ProdutoEndPointImpl implements ProdutoEndPoint {
 	}
 
 	@Override
-	public Response deletar(Long id) {
-		produtoService.deletar(id);
+	public Response deletar(Long codigo) {
+		produtoService.deletar(codigo);
 		return Response.status(Status.OK).entity(new MensagemRetornoDTO("Produto deletado com sucesso")).build(); 
+	}
+
+	@Override
+	public Response reajustarPrecoPorCategoria(String categoria, Double preco) {
+		produtoService.reajustarPrecoPorCategoria(categoria, preco);
+		return Response.status(Status.OK).entity(new MensagemRetornoDTO("Produtos ajustados com sucesso")).build();
+	}
+
+	@Override
+	public Response reajustarPrecoPorRangePercentual(Double percentualInicial, Double percentualFim, Double preco) {
+		produtoService.reajustarPrecoPorRangePercentual(percentualInicial, percentualFim, preco);
+		return Response.status(Status.OK).entity(new MensagemRetornoDTO("Produto ajustados com sucesso")).build();
 	}
 
 }

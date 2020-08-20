@@ -38,5 +38,20 @@ public interface ProdutoService extends GenericService<Long, Produto> {
 	 * Deletar um produto
 	 * @param id - Id do {@link Produto}
 	 */
-	void deletar(Long id);
+	void deletar(Long codigo);
+	
+	/**
+	 * Reajustar o preço de um produto por categoria
+	 * @param categoria - Categoria do produto
+	 * @param preco - Preço do produto
+	 */
+	void reajustarPrecoPorCategoria (String categoria, Double preco);
+	
+	/**
+	 * Reajustar o preço por range percentual da categoria
+	 * @param percentualInicial - Inicio do range do percentual
+	 * @param percentualFim - Fim do range do percentual
+	 * @param preco - Preço do produto
+	 */
+	void reajustarPrecoPorRangePercentual(Double percentualInicial, Double percentualFim, Double preco);
 }

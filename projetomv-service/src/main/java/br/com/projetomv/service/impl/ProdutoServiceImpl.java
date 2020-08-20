@@ -32,10 +32,6 @@ public class ProdutoServiceImpl extends GenericServiceImpl<Long, Produto> implem
 	@EJB
 	private CategoriaService categoriaService;
 	
-	public ProdutoServiceImpl() {
-		// TODO Auto-generated constructor stub
-	}
-	
 	@Override
 	public List<Produto> consultarTodos() {
 		try {
@@ -59,21 +55,35 @@ public class ProdutoServiceImpl extends GenericServiceImpl<Long, Produto> implem
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	@Override
 	public void cadastrar(ProdutoDTO produtoDTO) {
-		//Categoria categoria = categoriaService.consultarPorId(produtoDTO.getIdCategoria());
-		produtoDAO.gravar(ProdutoMapper.mapperDTOParaEntidade(produtoDTO, null));
+		Categoria categoria = categoriaService.consultarPorId(produtoDTO.getIdCategoria());
+		produtoDAO.gravar(ProdutoMapper.mapperDTOParaEntidade(produtoDTO, categoria));
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	@Override
 	public void editar(ProdutoDTO produtoDTO) {
-		//Categoria categoria = categoriaService.consultarPorId(produtoDTO.getIdCategoria());
-		produtoDAO.gravar(ProdutoMapper.mapperDTOParaEntidade(produtoDTO, null));
+		Categoria categoria = categoriaService.consultarPorId(produtoDTO.getIdCategoria());
+		produtoDAO.gravar(ProdutoMapper.mapperDTOParaEntidade(produtoDTO, categoria));
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	@Override
-	public void deletar(Long id) {
-		produtoDAO.excluir(id);
+	public void deletar(Long codigo) {
+		produtoDAO.excluir(codigo);
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	@Override
+	public void reajustarPrecoPorCategoria(String categoria, Double preco) {
+		produtoDAO.reajustarPrecoPorCategoria(categoria, preco);
+		
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	@Override
+	public void reajustarPrecoPorRangePercentual(Double percentualInicial, Double percentualFim, Double preco) {
+		produtoDAO.reajustarPrecoPorRangePercentual(percentualInicial, percentualFim, preco);
+		
 	}
 
 }

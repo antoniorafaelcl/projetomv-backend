@@ -8,7 +8,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:/projetomvDS</jta-data-source>
 		<properties>
-			<property name="hibernate.default_schema" value="projetomv" />
+			<property name="hibernate.default_schema" value="mv" />
 <!-- 			<property name="hibernate.hbm2ddl.auto" value="update"/> -->
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.OracleDialect" />
